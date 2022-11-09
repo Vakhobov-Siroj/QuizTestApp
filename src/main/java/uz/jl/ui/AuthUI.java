@@ -9,24 +9,27 @@ import uz.jl.vo.auth.Session;
 import uz.jl.vo.http.Response;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 public class AuthUI {
+    static Scanner scanner = new Scanner(System.in);
     static AuthUserService service = ApplicationContextHolder.getBean(AuthUserService.class);
     static AuthUI authUI = new AuthUI();
 
     public static void main(String[] args) {
 
         if (Objects.isNull(Session.sessionUser)) {
-            BaseUtils.println("Login -> 1");
-            BaseUtils.println("Register -> 2");
+            System.out.println("Login -> 1");
+            System.out.println("Register -> 2");
         } else {
-            BaseUtils.println("\nShow workspace List -> 3");
-            BaseUtils.println("Workspace settings -> 4");
-            BaseUtils.println("Logout -> 0");
+            System.out.println("\nShow workspace List -> 3");
+            System.out.println("Workspace settings -> 4");
+            System.out.println("Logout -> 0");
         }
 
-        BaseUtils.println("Quit -> q");
-        String choice = BaseUtils.readText("?:");
+        System.out.println("Quit -> q");
+        System.out.print("?:");
+        String choice = scanner.nextLine();
         switch (choice) {
             case "1" -> authUI.login();
             case "2" -> authUI.register();
@@ -34,23 +37,25 @@ public class AuthUI {
             case "4" -> authUI.workSpaceSettings();
             case "0" -> authUI.logout();
             case "q" -> {
-                BaseUtils.println("Bye", Colors.CYAN);
+                System.out.println("Bye");
                 System.exit(0);
             }
-            default -> BaseUtils.println("Wrong Choice", Colors.RED);
+            default -> System.out.println("Wrong Choice");
         }
         main(args);
     }
 
     private void workSpaceSettings() {
-        BaseUtils.println("\nCreate workspace -> 1");
-        BaseUtils.println("Show workspace   -> 2");
-        BaseUtils.println("Update workspace -> 3");
-        BaseUtils.println("Delete workspace -> 4");
-        BaseUtils.println("Add member       -> 5");
-        BaseUtils.println("Back             -> 0");
-        BaseUtils.println("Quit             -> q");
-        String choice = BaseUtils.readText("?:");
+        System.out.println("\nCreate workspace -> 1");
+        System.out.println("Show workspace   -> 2");
+        System.out.println("Update workspace -> 3");
+        System.out.println("Delete workspace -> 4");
+        System.out.println("Add member       -> 5");
+        System.out.println("Back             -> 0");
+        System.out.println("Quit             -> q");
+        System.out.print("?:");
+        String choice = scanner.nextLine()
+                ;
         switch (choice) {
             case "1" -> authUI.workSpaceCreate();
             case "2" -> authUI.workSpaceShow();
@@ -61,27 +66,25 @@ public class AuthUI {
                 return;
             }
             case "q" -> {
-                BaseUtils.println("Bye", Colors.CYAN);
+                System.out.println("Bye");
                 System.exit(0);
             }
-            default -> BaseUtils.println("Wrong Choice", Colors.RED);
+            default -> System.out.println("Wrong Choice");
         }
         workSpaceSettings();
     }
 
     private void workSpaceShow() {
-        /***
-         *  Shu workspace chiqib turadi va unga qoshimcha
-         *  pastda doskalarga tegishli funksiyalar turadi
-         *  Logika yozing oxirida men yozgan narsa chiqib tursin
-         */
 
 
-        BaseUtils.println("\nBoard List -> 1");
-        BaseUtils.println("Board settings   -> 2");
-        BaseUtils.println("Back             -> 0");
-        BaseUtils.println("Quit             -> q");
-        String choice = BaseUtils.readText("?:");
+
+        System.out.println("\nBoard List -> 1");
+        System.out.println("Board settings   -> 2");
+        System.out.println("Back             -> 0");
+        System.out.println("Quit             -> q");
+        System.out.print("?:");
+        String choice = scanner.nextLine()
+                ;
         switch (choice) {
             case "1" -> authUI.boardList();
             case "2" -> authUI.boardSettings();
@@ -89,22 +92,24 @@ public class AuthUI {
                 return;
             }
             case "q" -> {
-                BaseUtils.println("Bye", Colors.CYAN);
+                System.out.println("Bye");
                 System.exit(0);
             }
-            default -> BaseUtils.println("Wrong Choice", Colors.RED);
+            default -> System.out.println("Wrong Choice");
         }
         workSpaceShow();
     }
 
     private void boardSettings() {
-        BaseUtils.println("\nCreate board -> 1");
-        BaseUtils.println("Show board   -> 2");
-        BaseUtils.println("Update board -> 3");
-        BaseUtils.println("Delete board -> 4");
-        BaseUtils.println("Back         -> 0");
-        BaseUtils.println("Quit         -> q");
-        String choice = BaseUtils.readText("?:");
+        System.out.println("\nCreate board -> 1");
+        System.out.println("Show board   -> 2");
+        System.out.println("Update board -> 3");
+        System.out.println("Delete board -> 4");
+        System.out.println("Back         -> 0");
+        System.out.println("Quit         -> q");
+        System.out.print("?:");
+        String choice = scanner.nextLine()
+                ;
         switch (choice) {
             case "1" -> authUI.boardCreate();
             case "2" -> authUI.boardShow();
@@ -114,10 +119,10 @@ public class AuthUI {
                 return;
             }
             case "q" -> {
-                BaseUtils.println("Bye", Colors.CYAN);
+                System.out.println("Bye");
                 System.exit(0);
             }
-            default -> BaseUtils.println("Wrong Choice", Colors.RED);
+            default -> System.out.println("Wrong Choice");
         }
         boardSettings();
     }
@@ -131,15 +136,15 @@ public class AuthUI {
     }
 
     private void boardShow() {
-        /***
-         * Boardni show qilganda board haqida malumotlar va men yozgan narsalar chiqib tursin
-         */
 
-        BaseUtils.println("\nColumn List -> 1");
-        BaseUtils.println("Column settings   -> 2");
-        BaseUtils.println("Back             -> 0");
-        BaseUtils.println("Quit             -> q");
-        String choice = BaseUtils.readText("?:");
+
+        System.out.println("\nColumn List -> 1");
+        System.out.println("Column settings   -> 2");
+        System.out.println("Back             -> 0");
+        System.out.println("Quit             -> q");
+        System.out.print("?:");
+        String choice = scanner.nextLine()
+                ;
         switch (choice) {
             case "1" -> authUI.columnList();
             case "2" -> authUI.columnSettings();
@@ -147,22 +152,24 @@ public class AuthUI {
                 return;
             }
             case "q" -> {
-                BaseUtils.println("Bye", Colors.CYAN);
+                System.out.println("Bye");
                 System.exit(0);
             }
-            default -> BaseUtils.println("Wrong Choice", Colors.RED);
+            default -> System.out.println("Wrong Choice");
         }
         boardShow();
     }
 
     private void columnSettings() {
-        BaseUtils.println("\nCreate column -> 1");
-        BaseUtils.println("Show column   -> 2");
-        BaseUtils.println("Update column -> 3");
-        BaseUtils.println("Delete column -> 4");
-        BaseUtils.println("Back          -> 0");
-        BaseUtils.println("Quit          -> q");
-        String choice = BaseUtils.readText("?:");
+        System.out.println("\nCreate column -> 1");
+        System.out.println("Show column   -> 2");
+        System.out.println("Update column -> 3");
+        System.out.println("Delete column -> 4");
+        System.out.println("Back          -> 0");
+        System.out.println("Quit          -> q");
+        System.out.print("?:");
+        String choice = scanner.nextLine()
+                ;
         switch (choice) {
             case "1" -> authUI.columnCreate();
             case "2" -> authUI.columnShow();
@@ -172,10 +179,10 @@ public class AuthUI {
                 return;
             }
             case "q" -> {
-                BaseUtils.println("Bye", Colors.CYAN);
+                System.out.println("Bye");
                 System.exit(0);
             }
-            default -> BaseUtils.println("Wrong Choice", Colors.RED);
+            default -> System.out.println("Wrong Choice");
         }
         columnSettings();
     }
@@ -195,11 +202,13 @@ public class AuthUI {
          */
 
 
-        BaseUtils.println("\nTask List       -> 1");
-        BaseUtils.println("Task settings   -> 2");
-        BaseUtils.println("Back            -> 0");
-        BaseUtils.println("Quit            -> q");
-        String choice = BaseUtils.readText("?:");
+        System.out.println("\nTask List       -> 1");
+        System.out.println("Task settings   -> 2");
+        System.out.println("Back            -> 0");
+        System.out.println("Quit            -> q");
+        System.out.print("?:");
+        String choice = scanner.nextLine()
+                ;
         switch (choice) {
             case "1" -> authUI.taskList();
             case "2" -> authUI.taskSettings();
@@ -207,23 +216,25 @@ public class AuthUI {
                 return;
             }
             case "q" -> {
-                BaseUtils.println("Bye", Colors.CYAN);
+                System.out.println("Bye");
                 System.exit(0);
             }
-            default -> BaseUtils.println("Wrong Choice", Colors.RED);
+            default -> System.out.println("Wrong Choice");
         }
         columnShow();
     }
 
     private void taskSettings() {
-        BaseUtils.println("\nCreate task -> 1");
-        BaseUtils.println("Show task   -> 2");
-        BaseUtils.println("Update task -> 3");
-        BaseUtils.println("Delete task -> 4");
-        BaseUtils.println("Move task   -> 5");
-        BaseUtils.println("Back        -> 0");
-        BaseUtils.println("Quit        -> q");
-        String choice = BaseUtils.readText("?:");
+        System.out.println("\nCreate task -> 1");
+        System.out.println("Show task   -> 2");
+        System.out.println("Update task -> 3");
+        System.out.println("Delete task -> 4");
+        System.out.println("Move task   -> 5");
+        System.out.println("Back        -> 0");
+        System.out.println("Quit        -> q");
+        System.out.print("?:");
+        String choice = scanner.nextLine()
+                ;
         switch (choice) {
             case "1" -> authUI.taskCreate();
             case "2" -> authUI.taskShow();
@@ -234,10 +245,10 @@ public class AuthUI {
                 return;
             }
             case "q" -> {
-                BaseUtils.println("Bye", Colors.CYAN);
+                System.out.println("Bye");
                 System.exit(0);
             }
-            default -> BaseUtils.println("Wrong Choice", Colors.RED);
+            default -> System.out.println("Wrong Choice");
         }
         taskSettings();
     }
@@ -259,11 +270,13 @@ public class AuthUI {
          * Task haqida malumotlar chiqib tursin va unga tegishli funksiyalar ham bo'lsin
          */
 
-        BaseUtils.println("\nComment List       -> 1");
-        BaseUtils.println("Comment settings   -> 2");
-        BaseUtils.println("Back               -> 0");
-        BaseUtils.println("Quit               -> q");
-        String choice = BaseUtils.readText("?:");
+        System.out.println("\nComment List       -> 1");
+        System.out.println("Comment settings   -> 2");
+        System.out.println("Back               -> 0");
+        System.out.println("Quit               -> q");
+        System.out.print("?:");
+        String choice = scanner.nextLine()
+                ;
         switch (choice) {
             case "1" -> authUI.commentList();
             case "2" -> authUI.commentSettings();
@@ -271,21 +284,23 @@ public class AuthUI {
                 return;
             }
             case "q" -> {
-                BaseUtils.println("Bye", Colors.CYAN);
+                System.out.println("Bye");
                 System.exit(0);
             }
-            default -> BaseUtils.println("Wrong Choice", Colors.RED);
+            default -> System.out.println("Wrong Choice");
         }
         taskShow();
     }
 
     private void commentSettings() {
-        BaseUtils.println("\nCreate comment -> 1");
-        BaseUtils.println("Update comment -> 2");
-        BaseUtils.println("Delete comment -> 3");
-        BaseUtils.println("Back           -> 0");
-        BaseUtils.println("Quit           -> q");
-        String choice = BaseUtils.readText("?:");
+        System.out.println("\nCreate comment -> 1");
+        System.out.println("Update comment -> 2");
+        System.out.println("Delete comment -> 3");
+        System.out.println("Back           -> 0");
+        System.out.println("Quit           -> q");
+        System.out.print("?:");
+        String choice = scanner.nextLine()
+                ;
         switch (choice) {
             case "1" -> authUI.commentCreate();
             case "2" -> authUI.commentUpdate();
@@ -294,10 +309,10 @@ public class AuthUI {
                 return;
             }
             case "q" -> {
-                BaseUtils.println("Bye", Colors.CYAN);
+                System.out.println("Bye");
                 System.exit(0);
             }
-            default -> BaseUtils.println("Wrong Choice", Colors.RED);
+            default -> System.out.println("Wrong Choice");
         }
         commentSettings();
     }
@@ -371,22 +386,31 @@ public class AuthUI {
     }
 
     private void register() {
+        System.out.println("Enter username: ");
+        String userName = scanner.nextLine();
+        System.out.println("Enter email: ");
+        String email = scanner.nextLine();
+        System.out.println("Enter password: ");
+        String password = scanner.nextLine();
+
         AuthUserCreateVO vo = AuthUserCreateVO.builder()
-                .username(BaseUtils.readText("Enter username: "))
-                .email(BaseUtils.readText("Enter email: "))
-                .password(BaseUtils.readText("Enter password: "))
+                .username(userName)
+                .email(email)
+                .password(password)
                 .build();
         print_response(service.create(vo));
     }
 
     private void login() {
-        String username = BaseUtils.readText("Enter username: ");
-        String password = BaseUtils.readText("Enter password: ");
+        System.out.println("Enter username: ");
+        String username = scanner.nextLine() ;
+        System.out.println("Enter password: ");
+        String password = scanner.nextLine() ;
         print_response(service.login(username, password));
     }
 
     public void print_response(Response response) {
-        String color = response.isOk() ? Colors.RED : Colors.GREEN;
-        BaseUtils.println(BaseUtils.gson.toJson(response.getBody()), color);
+
+        System.out.println(response.getBody());
     }
 }

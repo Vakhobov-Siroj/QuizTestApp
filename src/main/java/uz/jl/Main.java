@@ -5,6 +5,7 @@ import uz.jl.configs.PasswordConfigurer;
 import uz.jl.dao.auth.AuthUserDAO;
 import uz.jl.domains.auth.AuthUser;
 import uz.jl.service.auth.AuthUserService;
+import uz.jl.utils.BaseUtils;
 import uz.jl.vo.auth.AuthUserCreateVO;
 import uz.jl.vo.auth.AuthUserVO;
 import uz.jl.vo.http.Response;
@@ -23,20 +24,20 @@ public class Main {
 //                .build();
 //        service.create(vo);
 
-        BaseUtils.println("Login -> 1");
-        BaseUtils.println("Register -> 2");
-        BaseUtils.println("Quit -> q");
-        String choice = BaseUtils.readText("?:");
+        System.out.println("Login -> 1");
+        System.out.println("Register -> 2");
+        System.out.println("Quit -> q");
+        String choice = ("?:");
         switch (choice) {
             case "1" -> main.login();
             case "2" -> main.register();
             case "q" -> {
-                BaseUtils.println("Bye", Colors.CYAN);
+                System.out.println("Bye");
                 System.exit(0);
             }
-            default -> BaseUtils.println("Wrong Choice", Colors.RED);
+            default -> System.out.println("Wrong Choice");
         }
-        main(args);
+//        main(args);
 
 
     }
@@ -47,16 +48,16 @@ public class Main {
 
     private void login() {
         Response<AuthUserVO> response = service.login(
-                BaseUtils.readText("username ? "),
-                BaseUtils.readText("password ? ")
+                ("username ? "),
+                ("password ? ")
         );
 
         print_response(response);
     }
 
     private void print_response(Response<AuthUserVO> response) {
-        String color = !response.isOk()  ? Colors.RED : Colors.GREEN;
-        BaseUtils.println(BaseUtils.gson.toJson(response.getError()), color);
+
+        System.out.println(response.getError());
     }
 
 }

@@ -23,7 +23,7 @@ public class Task extends Auditable {
     private String description;
 
     @Column(nullable = false)
-    private Long order;
+    private Long orders;
 
     @Column
     private Timestamp dedLine;

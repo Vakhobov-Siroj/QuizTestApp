@@ -19,7 +19,7 @@ public class Board_Column extends Auditable {
     private String title;
 
     @Column(nullable = false)
-    private Long order;
+    private Long orders;
 
     @Column(nullable = false, unique = true)
     private String code;
